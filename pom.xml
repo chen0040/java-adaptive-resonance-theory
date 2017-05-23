@@ -103,7 +103,6 @@
         <commons-io.version>2.4</commons-io.version>
         <commons-math.version>3.2</commons-math.version>
 
-        <jama.version>1.0.3</jama.version>
 
         <lombok.version>1.16.6</lombok.version>
     </properties>
@@ -509,7 +508,7 @@
         <dependency>
             <groupId>com.github.chen0040</groupId>
             <artifactId>java-data-frame</artifactId>
-            <version>1.0.7</version>
+            <version>1.0.8</version>
         </dependency>
 
 
