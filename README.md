@@ -3,6 +3,18 @@ Package provides java implementation of algorithms in the field of adaptive reso
 
 [![Build Status](https://travis-ci.org/chen0040/java-adaptive-resonance-theory.svg?branch=master)](https://travis-ci.org/chen0040/java-adaptive-resonance-theory) [![Coverage Status](https://coveralls.io/repos/github/chen0040/java-adaptive-resonance-theory/badge.svg?branch=master)](https://coveralls.io/github/chen0040/java-adaptive-resonance-theory?branch=master) 
 
+# Install
+
+Add the following dependency to your POM file:
+
+```xml
+<dependency>
+  <groupId>com.github.chen0040</groupId>
+  <artifactId>java-adaptive-resonance-theory</artifactId>
+  <version>1.0.1</version>
+</dependency>
+```
+
 # Features
 
 Algorithms included:
