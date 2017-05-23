@@ -40,21 +40,6 @@ public class ART1Clustering implements Cloneable {
 
     }
 
-    public boolean allowNewNodeInPrediction() {
-        return allowNewNodeInPrediction;
-    }
-
-    public void setAllowNewNodeInPrediction(boolean allowNewNodeInPrediction) {
-        this.allowNewNodeInPrediction = allowNewNodeInPrediction;
-    }
-
-    public int getInitialNodeCount() {
-        return initialNodeCount;
-    }
-
-    public void setInitialNodeCount(int initialNodeCount) {
-        this.initialNodeCount = initialNodeCount;
-    }
 
     public int transform(DataRow tuple) {
         return simulate(tuple, allowNewNodeInPrediction);

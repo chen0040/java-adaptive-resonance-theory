@@ -46,15 +46,6 @@ public class ARTMAPClassifier implements Cloneable {
     public ARTMAPClassifier(){
     }
 
-    public boolean allowNewNodeInPrediction() {
-        return allowNewNodeInPrediction;
-    }
-
-    public void setAllowNewNodeInPrediction(boolean allowNewNodeInPrediction) {
-        this.allowNewNodeInPrediction = allowNewNodeInPrediction;
-    }
-
-
     public String transform(DataRow tuple) {
         return simulate(tuple, false);
     }
@@ -85,4 +76,7 @@ public class ARTMAPClassifier implements Cloneable {
     }
 
 
+    public int nodeCount() {
+        return net.getNodeCount();
+    }
 }
