@@ -15,7 +15,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class FuzzyARTClustering {
+public class FuzzyARTClustering implements Cloneable {
 
     @Setter(AccessLevel.NONE)
     private FuzzyART net;
@@ -80,9 +80,9 @@ public class FuzzyARTClustering {
         int dimension = batch.row(0).toArray().length * 2; // times 2 due to complementary coding
 
         net=new FuzzyART(dimension, initialNodeCount);
-        net.alpha = alpha;
-        net.beta = beta;
-        net.rho = rho;
+        net.setAlpha(alpha);
+        net.setBeta(beta);
+        net.setRho(rho);
 
         int m = batch.rowCount();
         for(int i=0; i < m; ++i) {

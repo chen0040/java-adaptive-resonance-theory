@@ -5,9 +5,9 @@ import java.util.List;
 
 public class ART1 implements Cloneable {
 
-	public double alpha; // choice parameter
-	public double rho; // resonance threshold
-	public double beta; // learning rate
+	protected double alpha; // choice parameter
+	protected double rho; // resonance threshold
+	protected double beta; // learning rate
 	protected List<double[]> weights;
 	protected List<Double> activation_values;
 	protected int inputCount;

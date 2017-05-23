@@ -10,7 +10,7 @@ import com.github.chen0040.data.utils.transforms.Standardization;
 /**
  * Created by xschen on 21/8/15.
  */
-public class ART1Clustering {
+public class ART1Clustering implements Cloneable {
     private ART1 net;
     private int initialNodeCount = 1;
     private boolean allowNewNodeInPrediction = false;
@@ -66,9 +66,9 @@ public class ART1Clustering {
         inputNormalization = new Standardization(batch);
 
         net=new ART1(dimension, initialNodeCount);
-        net.alpha = alpha;
-        net.beta = beta;
-        net.rho = rho0;
+        net.setAlpha(alpha);
+        net.setBeta(beta);
+        net.setRho(rho0);
 
         int m = batch.rowCount();
         for(int i=0; i < m; ++i) {

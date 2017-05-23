@@ -15,7 +15,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class ARTMAPClassifier {
+public class ARTMAPClassifier implements Cloneable {
 
     @Setter(AccessLevel.NONE)
     private ARTMAP net;
@@ -66,9 +66,9 @@ public class ARTMAPClassifier {
         int dimension = batch.row(0).toArray().length * 2; // times 2 due to complementary coding
 
         net=new ARTMAP(dimension);
-        net.alpha = alpha;
-        net.beta = beta;
-        net.rho = rho0;
+        net.setAlpha(alpha);
+        net.setBeta(beta);
+        net.setRho(rho0);
 
         int m = batch.rowCount();
         for(int i=0; i < m; ++i) {
