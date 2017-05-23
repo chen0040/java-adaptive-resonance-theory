@@ -27,7 +27,7 @@ ARTMAPClassifier classifier = new ARTMAPClassifier();
 clasifier.fit(trainingData);
 ```
 
-The "trainingData" is a data frame which holds data rows with labeled output (Please refers to this link to find out how to store data into a data frame)
+The "trainingData" is a data frame which holds data rows with labeled output (Please refers to this [link](https://github.com/chen0040/java-data-frame) to find out how to store data into a data frame)
 
 To predict using the trained ARTMAP classifier:
 
@@ -49,7 +49,9 @@ for(int i=0; i < dataFrame.rowCount(); ++i){
 }
 dataFrame.lock();
 
-
+double alpha = 9.89;
+double beta = 0.3;
+double rho = 0.01;
 classifier.setAlpha(alpha);
 classifier.setBeta(beta);
 classifier.setRho0(rho);
@@ -62,6 +64,43 @@ for(int i = 0; i < dataFrame.rowCount(); ++i){
   System.out.println("predicted: "+predicted_label+"\tactual: "+tuple.categoricalTarget());
 }
 
+```
+
+### Image Segmentation (Clustering) using FuzzyART
+
+The following sample code shows how to use FuzzyART to perform image segmentation:
+
+```java
+BufferedImage img= ImageIO.read(FileUtils.getResource("1.jpg"));
+
+DataFrame dataFrame = ImageDataFrameFactory.dataFrame(img);
+
+FuzzyARTClustering cluster = new FuzzyARTClustering();
+cluster.fit(dataFrame);
+
+List<Integer> classColors = new ArrayList<Integer>();
+for(int i=0; i < 5; ++i){
+ for(int j=0; j < 5; ++j){
+    classColors.add(ImageDataFrameFactory.get_rgb(255, rand.nextInt(255), rand.nextInt(255), rand.nextInt(255)));
+ }
+}
+
+BufferedImage segmented_image = new BufferedImage(img.getWidth(), img.getHeight(), img.getType());
+for(int x=0; x < img.getWidth(); x++)
+{
+ for(int y=0; y < img.getHeight(); y++)
+ {
+    int rgb = img.getRGB(x, y);
+
+    DataRow tuple = ImageDataFrameFactory.getPixelTuple(dataFrame, rgb);
+
+    int clusterIndex = cluster.transform(tuple);
+
+    rgb = classColors.get(clusterIndex % classColors.size());
+
+    segmented_image.setRGB(x, y, rgb);
+ }
+}
 ```
 
 
