@@ -59,6 +59,20 @@ public class FuzzyARTClustering implements Cloneable {
         return simulate(tuple, allowNewNodeInPrediction);
     }
 
+    public void transform(DataFrame dataFrame) {
+        for(int i=0; i <dataFrame.rowCount(); ++i){
+            int clusterId = transform(dataFrame.row(i));
+            dataFrame.row(i).setCategoricalTargetCell("cluster", "" + clusterId);
+        }
+    }
+
+    public DataFrame fitAndTransform(DataFrame dataFrame) {
+        fit(dataFrame);
+        dataFrame = dataFrame.makeCopy();
+        transform(dataFrame);
+        return dataFrame;
+    }
+
     public void fit(DataFrame batch) {
 
         inputNormalization = new ComplementaryCoding(batch);

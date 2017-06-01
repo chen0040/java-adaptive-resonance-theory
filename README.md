@@ -11,7 +11,7 @@ Add the following dependency to your POM file:
 <dependency>
   <groupId>com.github.chen0040</groupId>
   <artifactId>java-adaptive-resonance-theory</artifactId>
-  <version>1.0.2</version>
+  <version>1.0.3</version>
 </dependency>
 ```
 
@@ -88,7 +88,21 @@ BufferedImage img= ImageIO.read(FileUtils.getResource("1.jpg"));
 DataFrame dataFrame = ImageDataFrameFactory.dataFrame(img);
 
 FuzzyARTClustering cluster = new FuzzyARTClustering();
-cluster.fit(dataFrame);
+
+DataFrame learnedData = cluster.fitAndTransform(dataFrame);
+
+for(int i=0; i <learnedData.rowCount(); ++i) {
+ ImageDataRow row = (ImageDataRow)learnedData.row(i);
+ int x = row.getPixelX();
+ int y = row.getPixelY();
+ String clusterId = row.getCategoricalTargetCell("cluster");
+ System.out.println("cluster id for pixel (" + x + "," + y + ") is " + clusterId);
+}
+```
+
+The segmented image can be generated using the trained KMeans from above as illustrated by the following sample code:
+
+```java
 
 List<Integer> classColors = new ArrayList<Integer>();
 for(int i=0; i < 5; ++i){
@@ -104,7 +118,7 @@ for(int x=0; x < img.getWidth(); x++)
  {
     int rgb = img.getRGB(x, y);
 
-    DataRow tuple = ImageDataFrameFactory.getPixelTuple(dataFrame, rgb);
+    DataRow tuple = ImageDataFrameFactory.getPixelTuple(x, y, rgb);
 
     int clusterIndex = cluster.transform(tuple);
 
@@ -114,6 +128,7 @@ for(int x=0; x < img.getWidth(); x++)
  }
 }
 ```
+
 
 
 

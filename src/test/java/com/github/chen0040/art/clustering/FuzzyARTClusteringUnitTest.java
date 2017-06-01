@@ -49,7 +49,7 @@ public class FuzzyARTClusteringUnitTest {
          {
             int rgb = img.getRGB(x, y);
 
-            DataRow tuple = ImageDataFrameFactory.getPixelTuple(batch, rgb);
+            DataRow tuple = ImageDataFrameFactory.getPixelTuple(x, y, rgb);
 
             int clusterIndex = cluster.transform(tuple);
 
