@@ -205,7 +205,7 @@ public class ART1 implements Cloneable {
 				winner = getNodeCount() - 1;
 			}
 		}else{
-			double max_match_value = 0;
+			double max_match_value = Double.NEGATIVE_INFINITY;
 			int J = -1;
 			for (int j = 0; j < C; ++j) {
 				double match_value = match_function(x, j);
