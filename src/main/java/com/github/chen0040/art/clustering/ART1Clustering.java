@@ -19,7 +19,7 @@ public class ART1Clustering {
     private int initialNodeCount = 1;
 
     @Setter
-    private int maxClusterCount = 10;
+    private int maxClusterCount = -1;
 
     @Setter
     private boolean allowNewNodeInPrediction = false;
@@ -60,7 +60,7 @@ public class ART1Clustering {
         for(int i=0; i < m; ++i) {
             DataRow tuple = batch.row(i);
             int clusterId = simulate(tuple, create_new);
-            if(!clusterIds.contains(clusterId) && clusterIds.size() >= maxClusterCount-1){
+            if(maxClusterCount > 0 && !clusterIds.contains(clusterId) && clusterIds.size() >= maxClusterCount-1){
                 create_new = false;
             }
             clusterIds.add(clusterId);

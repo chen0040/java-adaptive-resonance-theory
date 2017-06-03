@@ -9,13 +9,16 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.HashSet;
+import java.util.Set;
+
 
 /**
  * Created by xschen on 21/8/15.
  */
 @Getter
 @Setter
-public class FuzzyARTClustering implements Cloneable {
+public class FuzzyARTClustering {
 
     @Setter(AccessLevel.NONE)
     private FuzzyART net;
@@ -30,25 +33,13 @@ public class FuzzyARTClustering implements Cloneable {
     @Setter(AccessLevel.NONE)
     private ComplementaryCoding inputNormalization;
 
+    private int maxClusterCount = -1;
+
     private double alpha = 0.1;
     private double beta = 0.2;
     private double rho = 0.7;
 
-    public void copy(FuzzyARTClustering that) throws CloneNotSupportedException {
-
-        net = that.net == null ? null : (FuzzyART)that.net.clone();
-        initialNodeCount = that.initialNodeCount;
-        allowNewNodeInPrediction = that.allowNewNodeInPrediction;
-        inputNormalization = that.inputNormalization == null ? null : (ComplementaryCoding)that.inputNormalization.clone();
-    }
-
-    @Override
-    public Object clone() throws CloneNotSupportedException {
-        FuzzyARTClustering clone = (FuzzyARTClustering)super.clone();
-        clone.copy(this);
-
-        return clone;
-    }
+    private Set<Integer> clusterIds = new HashSet<>();
 
     public FuzzyARTClustering(){
 
@@ -84,9 +75,16 @@ public class FuzzyARTClustering implements Cloneable {
         net.setRho(rho);
 
         int m = batch.rowCount();
+        boolean create_node = true;
         for(int i=0; i < m; ++i) {
             DataRow tuple = batch.row(i);
-            simulate(tuple, true);
+            int clusterId = simulate(tuple, create_node);
+
+            if(maxClusterCount > 0 && !clusterIds.contains(clusterId) && clusterIds.size() >= maxClusterCount-1){
+                create_node = false;
+            }
+
+            clusterIds.add(clusterId);
         }
     }
 
