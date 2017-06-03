@@ -15,7 +15,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class ARTMAPClassifier implements Cloneable {
+public class ARTMAPClassifier {
 
     @Setter(AccessLevel.NONE)
     private ARTMAP net;
@@ -28,23 +28,6 @@ public class ARTMAPClassifier implements Cloneable {
 
     @Setter(AccessLevel.NONE)
     private boolean allowNewNodeInPrediction = false;
-
-    public void copy(ARTMAPClassifier that) throws CloneNotSupportedException {
-        net = that.net == null ? null : (ARTMAP)that.net.clone();
-        allowNewNodeInPrediction = that.allowNewNodeInPrediction;
-        inputNormalization = that.inputNormalization == null ? null : (ComplementaryCoding)that.inputNormalization.clone();
-    }
-
-    @Override
-    public Object clone() throws CloneNotSupportedException {
-        ARTMAPClassifier clone = (ARTMAPClassifier)super.clone();
-        clone.copy(this);
-
-        return clone;
-    }
-
-    public ARTMAPClassifier(){
-    }
 
     public String transform(DataRow tuple) {
         return simulate(tuple, false);

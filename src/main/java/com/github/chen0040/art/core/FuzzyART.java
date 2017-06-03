@@ -12,15 +12,7 @@ public class FuzzyART extends ART1 {
     public FuzzyART(){
         super();
     }
-
-    @Override
-    public Object clone() throws CloneNotSupportedException {
-        FuzzyART clone = (FuzzyART)super.clone();
-        clone.copy(this);
-
-        return clone;
-    }
-
+    
     @Override
     protected double choice_function(double[] x, int j){
         double[] W_j = weights.get(j);

@@ -29,22 +29,6 @@ public class ARTMAP extends FuzzyART {
         labels = new ArrayList<>();
     }
 
-    @Override
-    public Object clone() throws CloneNotSupportedException {
-        ARTMAP clone = (ARTMAP)super.clone();
-        clone.copy(this);
-        return clone;
-    }
-
-    @Override
-    public void copy(ART1 rhs){
-        super.copy(rhs);
-
-        ARTMAP rhs2 = (ARTMAP)rhs;
-        labels.clear();
-
-        labels.addAll(rhs2.labels);
-    }
 
     public String simulate(double[] x, String label, boolean can_create_new_node){
         boolean new_node = can_create_new_node;

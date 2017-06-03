@@ -3,7 +3,7 @@ package com.github.chen0040.art.core;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ART1 implements Cloneable {
+public class ART1 {
 
 	protected double alpha; // choice parameter
 	protected double rho; // resonance threshold
@@ -74,31 +74,6 @@ public class ART1 implements Cloneable {
 
 	public void setInputCount(int inputCount) {
 		this.inputCount = inputCount;
-	}
-
-	public void copy(ART1 rhs){
-
-		alpha = rhs.alpha;
-		rho = rhs.rho;
-		beta = rhs.beta;
-		weights.clear();
-		activation_values.clear();
-		inputCount = rhs.inputCount;
-
-		for(int i=0; i < rhs.weights.size(); ++i){
-			weights.add(rhs.weights.get(i).clone());
-		}
-
-		for(int i=0; i < rhs.activation_values.size(); ++i){
-			activation_values.add(rhs.activation_values.get(i));
-		}
-	}
-
-	@Override
-	public Object clone() throws CloneNotSupportedException {
-		ART1 clone = (ART1)super.clone();
-		clone.copy(this);
-		return clone;
 	}
 
 	public void addNode(){
