@@ -14,66 +14,30 @@ public class ART1 {
 
 
 	public ART1(){
-		weights = new ArrayList<double[]>();
-		activation_values = new ArrayList<Double>();
+		weights = new ArrayList<>();
+		activation_values = new ArrayList<>();
 	}
 
 	public ART1(int inputCount, int initialNeuronCount) {
 		this.inputCount = inputCount;
-		weights = new ArrayList<double[]>();
-		activation_values = new ArrayList<Double>();
+		weights = new ArrayList<>();
+		activation_values = new ArrayList<>();
 
 		for(int i=0; i < initialNeuronCount; ++i){
 			addNode();
 		}
 	}
 
-	public double getAlpha() {
-		return alpha;
-	}
-
 	public void setAlpha(double alpha) {
 		this.alpha = alpha;
-	}
-
-	public double getRho() {
-		return rho;
 	}
 
 	public void setRho(double rho) {
 		this.rho = rho;
 	}
 
-	public double getBeta() {
-		return beta;
-	}
-
 	public void setBeta(double beta) {
 		this.beta = beta;
-	}
-
-	public List<double[]> getWeights() {
-		return weights;
-	}
-
-	public void setWeights(List<double[]> weights) {
-		this.weights = weights;
-	}
-
-	public List<Double> getActivation_values() {
-		return activation_values;
-	}
-
-	public void setActivation_values(List<Double> activation_values) {
-		this.activation_values = activation_values;
-	}
-
-	public int getInputCount() {
-		return inputCount;
-	}
-
-	public void setInputCount(int inputCount) {
-		this.inputCount = inputCount;
 	}
 
 	public void addNode(){
@@ -142,10 +106,6 @@ public class ART1 {
 		for(int i=0; i < x.length; ++i){
 			W_j[i] = (1 - beta) * W_j[i] + beta * W_j[i] * x[i];
 		}
-	}
-
-	public int train(double[] x){
-		return simulate(x, true);
 	}
 
 	public int simulate(double[] x, boolean can_create_new_node){

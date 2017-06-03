@@ -34,15 +34,6 @@ public class ART1Clustering {
 
     private Set<Integer> clusterIds = new HashSet<>();
 
-    public ART1Clustering(){
-
-    }
-
-
-    public int transform(DataRow tuple) {
-        return simulate(tuple, allowNewNodeInPrediction);
-    }
-
     public DataFrame fitAndTransform(DataFrame batch) {
         clusterIds.clear();
         batch = batch.makeCopy();

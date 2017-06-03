@@ -11,10 +11,6 @@ public class ARTMAP extends FuzzyART {
     private List<String> labels;
     private double epsilon = 0.00001;
 
-    public double getEpsilon() {
-        return epsilon;
-    }
-
     public void setEpsilon(double epsilon) {
         this.epsilon = epsilon;
     }
