@@ -27,6 +27,16 @@ Applications included:
 
 * Clustering (FuzzyART, ART1)
 * Multi-class Classification (ARTMAP)
+* Reinforcement Learning:  There is also an example of reinforcement learning (TD-learning using Q-Learning and SARSA) based on FuzzyART. It
+is known as "FALCON A Fusion Architecture for Learning Cognition and Navigation", and the sample codes can be found
+in the [src/test/java/com/github/chen0040/art/falcon/simulation/minefield](src/test/java/com/github/chen0040/art/falcon/simulation/minefield)
+The reinforcement learning objective is to navigate a tank (the agent) to a target flag in a mine field, sensors are 
+available to the tank when making decision to turn and move forward, immediate reward and delayed rewards were given
+to the tank during the Q-Learning and SARSA reinforcement learning process. To launch the reinforcement learning, 
+right-click [MineFieldSimulatorGUI.java](src/test/java/com/github/chen0040/art/falcon/simulation/minefield/gui/MineFieldSimulatorGUI.java)
+and select "Run in main()" in the IntelliJ editor popup menu (or something similar in eclipse or other editors), in the
+GUI launched, select "File->Start Simulation" (slow training mode) or "File->Start Simulation (No GUI)" (fast training
+mode)
 
 # Usage
 
