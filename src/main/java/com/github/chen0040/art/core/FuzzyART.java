@@ -12,7 +12,16 @@ public class FuzzyART extends ART1 {
     public FuzzyART(){
         super();
     }
-    
+
+    @Override
+    protected void update_node(double[] x, int j){
+        double[] W_j = weights.get(j);
+
+        for(int i=0; i < x.length; ++i){
+            W_j[i] = (1 - beta) * W_j[i] + beta * Math.min(x[i], W_j[i]);
+        }
+    }
+
     @Override
     protected double choice_function(double[] x, int j){
         double[] W_j = weights.get(j);
